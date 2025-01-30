@@ -122,8 +122,8 @@ export default function TimersListScreen({ navigation }) {
               if (t.id === timer.id) {
                 if (t.remainingTime === 1) {
                   clearInterval(intervalId);
-                  markAsCompleted(t); // Mark as completed and reset automatically
-                  return { ...t, remainingTime: t.duration, isRunning: false, intervalId: null }; // Reset the timer
+                  markAsCompleted(t);
+                  return { ...t, remainingTime: t.duration, isRunning: false, intervalId: null };
                 }
                 return { ...t, remainingTime: t.remainingTime - 1 };
               }
@@ -139,13 +139,12 @@ export default function TimersListScreen({ navigation }) {
       return timer;
     });
   
-    // Set all categories to be expanded
     const allCategoriesExpanded = Object.keys(groupedTimers).reduce((acc, category) => {
-      acc[category] = true; // Expanding all categories
+      acc[category] = true;
       return acc;
     }, {});
     
-    setExpandedCategories(allCategoriesExpanded); // Set expanded categories state
+    setExpandedCategories(allCategoriesExpanded);
   
     saveTimers(updatedTimers);
   };
